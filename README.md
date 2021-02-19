@@ -2,9 +2,15 @@
 
 ## Machine Translation
 
-Final RNN Model            |
-:-------------------------:|
-![](./images/final_rnn_model.png)|
+Final RNN Model                                                                   |
+:--------------------------------------------------------------------------------:|
+![](./images/final_rnn_model.png)                                                 |
+English (input)                                                                   |
+california is busy during september , and it is usually wet in fall .             |
+French (label)                                                                    |
+californie est occupé en septembre , et il est généralement humide à l' automne . |
+Translation (output)                                                              |
+californie est occupé en septembre et il est généralement humide à l' automne .   |
 
 This project implements a recurrent neural network that functions as part of an end-to-end machine translation pipeline. It accepts English text as input and returns the French translation.
 
