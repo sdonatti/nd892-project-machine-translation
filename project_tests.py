@@ -1,8 +1,7 @@
 import numpy as np
+
 from keras.losses import sparse_categorical_crossentropy
 from keras.models import Sequential
-from keras.preprocessing.text import Tokenizer
-from keras.utils import to_categorical
 
 
 def _test_model(model, input_shape, output_sequence_length, french_vocab_size):
@@ -14,7 +13,7 @@ def _test_model(model, input_shape, output_sequence_length, french_vocab_size):
 
     assert model.output_shape == (None, output_sequence_length, french_vocab_size),\
         'Wrong output shape. Found output shape {} using parameters output_sequence_length={} and french_vocab_size={}'\
-            .format(model.output_shape, output_sequence_length, french_vocab_size)
+        .format(model.output_shape, output_sequence_length, french_vocab_size)
 
     assert len(model.loss_functions) > 0,\
         'No loss function set.  Apply the `compile` function to the model.'
@@ -24,26 +23,23 @@ def _test_model(model, input_shape, output_sequence_length, french_vocab_size):
 
 
 def test_tokenize(tokenize):
-    sentences = [
-        'The quick brown fox jumps over the lazy dog .',
-        'By Jove , my quick study of lexicography won a prize .',
-        'This is a short sentence .']
+    sentences = ['The quick brown fox jumps over the lazy dog .',
+                 'By Jove , my quick study of lexicography won a prize .',
+                 'This is a short sentence .']
     tokenized_sentences, tokenizer = tokenize(sentences)
     assert tokenized_sentences == tokenizer.texts_to_sequences(sentences),\
-        'Tokenizer returned and doesn\'t generate the same sentences as the tokenized sentences returned. '
+        'Tokenizer returned and does not generate the same sentences as the tokenized sentences returned.'
 
 
 def test_pad(pad):
-    tokens = [
-        [i for i in range(4)],
-        [i for i in range(6)],
-        [i for i in range(3)]]
+    tokens = [[i for i in range(4)],
+              [i for i in range(6)],
+              [i for i in range(3)]]
     padded_tokens = pad(tokens)
     padding_id = padded_tokens[0][-1]
-    true_padded_tokens = np.array([
-        [i for i in range(4)] + [padding_id]*2,
-        [i for i in range(6)],
-        [i for i in range(3)] + [padding_id]*3])
+    true_padded_tokens = np.array([[i for i in range(4)]+[padding_id]*2,
+                                   [i for i in range(6)],
+                                   [i for i in range(3)]+[padding_id]*3])
     assert isinstance(padded_tokens, np.ndarray),\
         'Pad returned the wrong type.  Found {} type, expected numpy array type.'
     assert np.all(padded_tokens == true_padded_tokens), 'Pad returned the wrong results.'
