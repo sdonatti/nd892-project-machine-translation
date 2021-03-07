@@ -34,7 +34,7 @@ conda env create -f environment.yaml
 conda activate nd892-project-machine-translation
 ```
 
-Launch the project Jupyter Notebooks
+Launch the project Jupyter Notebook
 ```
 jupyter notebook machine_translation.ipynb
 ```
