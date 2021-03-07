@@ -36,7 +36,7 @@ conda activate nd892-project-machine-translation
 
 Launch the project Jupyter Notebooks
 ```
-jupyter notebook
+jupyter notebook machine_translation.ipynb
 ```
 
 ### License
